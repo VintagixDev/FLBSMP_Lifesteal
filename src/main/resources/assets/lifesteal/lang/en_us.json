@@ -1,5 +1,6 @@
 {
   "item.lifesteal.heart": "Heart",
+  "item.lifesteal.heart.max": "You already have the maximum number of hearts.",
   "item.lifesteal.revive": "Revive",
   "item.lifesteal.revive.lore": "It looks like some sort of... mint?"
 }

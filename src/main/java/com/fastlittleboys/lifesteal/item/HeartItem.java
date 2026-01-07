@@ -1,6 +1,7 @@
 package com.fastlittleboys.lifesteal.item;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -30,7 +31,8 @@ public class HeartItem extends Item {
             maxHealth.setBaseValue(newMaxHealth);
             player.getItemInHand(hand).consume(1, player);
         }
-        player.displayClientMessage(Component.literal("§c§lYou already have the maximum amount of hearts."), true);
+        else if (world.isClientSide()) player.displayClientMessage(Component.translatable("item.lifesteal.heart.max")
+            .withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
         return InteractionResult.CONSUME;
     }
 }
