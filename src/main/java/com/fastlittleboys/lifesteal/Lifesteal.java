@@ -13,5 +13,6 @@ public class Lifesteal implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.initialize();
+		DeathEventHandler.register();
 	}
 }
