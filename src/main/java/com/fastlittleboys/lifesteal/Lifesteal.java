@@ -1,7 +1,11 @@
 package com.fastlittleboys.lifesteal;
 
+import com.fastlittleboys.lifesteal.command.CommandInitializer;
 import com.fastlittleboys.lifesteal.item.ModItems;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.commands.Commands;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import org.jspecify.annotations.NonNull;
@@ -34,5 +38,7 @@ public class Lifesteal implements ModInitializer {
 	public void onInitialize() {
 		ModItems.initialize();
 		DeathEventHandler.register();
+		CommandInitializer.initialize();
+
 	}
 }
