@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "lifesteal",
+	"version": "${version}",
+	"name": "Lifesteal",
+	"description": "A lifesteal mod for season 2 of the FLB SMP",
+	"authors": [
+		"Vintagix",
+		"Horsey4"
+	],
+	"contact": {
+		"sources": "https://github.com/VintagixDev/FLBSMP_Lifesteal"
+	},
+	"license": "AGPLv3",
+	"icon": "assets/lifesteal/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.fastlittleboys.lifesteal.Lifesteal"
+		],
+		"client": [
+			"com.fastlittleboys.lifesteal.LifestealClient"
+		]
+	},
+	"mixins": [
+		"lifesteal.mixins.json",
+		{
+			"config": "lifesteal.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
