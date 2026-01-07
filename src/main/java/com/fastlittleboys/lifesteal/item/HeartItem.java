@@ -5,7 +5,6 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
@@ -18,21 +17,13 @@ public class HeartItem extends Item {
 
     @Override
     public @NonNull InteractionResult use(@NonNull Level world, @NonNull Player player, @NonNull InteractionHand hand) {
-        var maxHealth = player.getAttribute(Attributes.MAX_HEALTH);
-        if (maxHealth == null) {
-            Lifesteal.LOGGER.error("Player {} has no max_health attribute!", player.getName().getString());
-            return InteractionResult.FAIL;
+        if (Lifesteal.tryModifyMaxHealth(player, 2)) {
+            player.getItemInHand(hand).consume(1, player);
+            return InteractionResult.CONSUME;
         }
 
-        var newMaxHealth = maxHealth.getBaseValue() + 2;
-        if (newMaxHealth <= 40) {
-            if (!world.isClientSide())
-                Lifesteal.LOGGER.info("Player {} consumed a heart and is now at {} hearts.", player.getName().getString(), newMaxHealth / 2);
-            maxHealth.setBaseValue(newMaxHealth);
-            player.getItemInHand(hand).consume(1, player);
-        }
-        else if (world.isClientSide()) player.displayClientMessage(Component.translatable("item.lifesteal.heart.max")
+        if (world.isClientSide()) player.displayClientMessage(Component.translatable("item.lifesteal.heart.max")
             .withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
-        return InteractionResult.CONSUME;
+        return InteractionResult.FAIL;
     }
 }
