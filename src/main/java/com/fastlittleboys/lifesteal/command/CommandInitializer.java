@@ -7,6 +7,7 @@ import net.minecraft.commands.Commands;
 public class CommandInitializer {
 
     public static void initialize() {
+
         CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
             dispatcher.register(
                 Commands.literal("withdraw")
