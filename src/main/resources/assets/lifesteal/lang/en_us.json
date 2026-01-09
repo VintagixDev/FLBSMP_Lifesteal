@@ -1,4 +1,5 @@
 {
+  "disconnect.lifesteal.banned": "You ran out of hearts!",
   "item.lifesteal.heart": "Heart",
   "item.lifesteal.heart.max": "You already have the maximum number of hearts.",
   "item.lifesteal.revive": "Revive",
