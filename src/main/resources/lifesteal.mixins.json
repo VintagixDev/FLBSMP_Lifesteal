@@ -1,14 +1,17 @@
 {
-	"required": true,
-	"package": "com.fastlittleboys.lifesteal.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ServerLoginPacketListenerImplAccessor"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
-	}
+  "required": true,
+  "package": "com.fastlittleboys.lifesteal.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "AbstractContainerMenuMixin",
+    "CrafterBlockMixin",
+    "CraftingMenuMixin",
+    "ServerLoginPacketListenerImplAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
 }

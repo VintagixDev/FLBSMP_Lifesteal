@@ -33,7 +33,9 @@ public class PlayerHeartData extends SavedData {
         this.craftingCooldowns = new HashMap<>(craftingCooldowns);
     }
 
-    public Set<UUID> getBannedPlayers(){ return Collections.unmodifiableSet(bannedPlayers); }
+    public Set<UUID> getBannedPlayers() {
+        return Collections.unmodifiableSet(bannedPlayers);
+    }
 
     public boolean isPlayerBanned(UUID player) {
         return bannedPlayers.contains(player);
@@ -47,12 +49,20 @@ public class PlayerHeartData extends SavedData {
         if (bannedPlayers.remove(player)) setDirty();
     }
 
-    public boolean hasCooldownExpired(UUID player, long cooldown) {
+    public boolean hasCraftingCooldownExpired(UUID player, long cooldown) {
         var start = craftingCooldowns.get(player);
-        return start == null || System.currentTimeMillis() >= start + cooldown;
+        return start != null && System.currentTimeMillis() >= start + cooldown;
+    }
+
+    public void stopCraftingCooldown(UUID player) {
+        if (craftingCooldowns.remove(player) != null) setDirty();
     }
 
     public void startCraftingCooldown(UUID player) {
+        if (craftingCooldowns.putIfAbsent(player, System.currentTimeMillis()) == null) setDirty();
+    }
+
+    public void restartCraftingCooldown(UUID player) {
         craftingCooldowns.put(player, System.currentTimeMillis());
         setDirty();
     }

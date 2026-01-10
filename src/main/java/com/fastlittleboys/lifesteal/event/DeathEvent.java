@@ -19,7 +19,7 @@ public class DeathEvent {
         if (!(entity instanceof ServerPlayer player)) return;
 
         if (!Lifesteal.tryModifyMaxHealth(player, -2)) {
-            Lifesteal.getPlayerHeartData(player.level().getServer()).banPlayer(player.getUUID());
+            Lifesteal.getPlayerHeartData(ServerInstance.get()).banPlayer(player.getUUID());
             player.connection.disconnect(Component.translatable("disconnect.lifesteal.banned"));
         }
         if (damageSource.getEntity() instanceof ServerPlayer attacker &&
