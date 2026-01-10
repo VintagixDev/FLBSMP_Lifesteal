@@ -33,6 +33,8 @@ public class PlayerHeartData extends SavedData {
         this.craftingCooldowns = new HashMap<>(craftingCooldowns);
     }
 
+    public Set<UUID> getBannedPlayers(){ return Collections.unmodifiableSet(bannedPlayers); }
+
     public boolean isPlayerBanned(UUID player) {
         return bannedPlayers.contains(player);
     }
