@@ -1,7 +1,7 @@
 package com.fastlittleboys.lifesteal.item;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
-import net.minecraft.core.component.DataComponentType;
+import com.fastlittleboys.lifesteal.event.ServerInstance;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -13,15 +13,12 @@ import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.CustomData;
+
+import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
+import java.net.*;
 import java.util.Set;
 import java.util.UUID;
 
@@ -36,11 +33,12 @@ public class ReviveItem extends Item {
             serverPlayer.openMenu(new SimpleMenuProvider(
                 (syncId, inventory, p) -> {
                     ChestMenu reviveMenu = ChestMenu.threeRows(syncId, inventory);
-                    Set<UUID> bannedPlayers = Lifesteal.getPlayerHeartData(player.level().getServer()).getBannedPlayers();
+                    Set<UUID> bannedPlayers = Lifesteal.getPlayerHeartData(ServerInstance.get()).getBannedPlayers();
                     var i = 0;
                     for(UUID uuid : bannedPlayers) {
-                        ItemStack item = new ItemStack(Items.PAPER);
+                        ItemStack item = new ItemStack(Items.PLAYER_HEAD);
 
+                        item.set(DataComponents.PROFILE, ResolvableProfile.createUnresolved(UUID.fromString("fb352471-a500-4247-8851-fced66ac41fc")));
                         item.set(DataComponents.CUSTOM_NAME, Component.literal(uuid.toString()));
                         reviveMenu.getSlot(i).set(item);
                         i++;
@@ -57,9 +55,6 @@ public class ReviveItem extends Item {
         return InteractionResult.SUCCESS;
     }
 
-    public String getUsernameFromUUID(UUID uuid) {
-        // TODO getUsernameFromUUID()
-        return "";
-    }
+
 
 }
