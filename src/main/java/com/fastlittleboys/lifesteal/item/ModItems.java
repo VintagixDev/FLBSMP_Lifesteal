@@ -18,6 +18,7 @@ import java.util.function.Function;
 
 @SuppressWarnings("unused")
 public class ModItems {
+    public static final Item TEAR_BOTTLE = register("tear_bottle", Item::new, new Item.Properties());
     public static final HeartItem HEART = register("heart", HeartItem::new, new Item.Properties()
         .rarity(Rarity.RARE));
     public static final ReviveItem REVIVE = register("revive", ReviveItem::new, new Item.Properties()

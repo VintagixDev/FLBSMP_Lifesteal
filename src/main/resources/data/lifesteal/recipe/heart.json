@@ -1,10 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "#"
+    "BNB",
+    "NTN",
+    "BNB"
   ],
   "key": {
-    "#": "minecraft:dirt"
+    "B": "minecraft:blaze_powder",
+    "N": "minecraft:netherite_ingot",
+    "T": "lifesteal:tear_bottle"
   },
   "result": {
     "id": "lifesteal:heart",

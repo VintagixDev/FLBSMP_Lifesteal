@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TBT",
+    "TTT"
+  ],
+  "key": {
+    "T": "minecraft:ghast_tear",
+    "B": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "lifesteal:tear_bottle",
+    "count": 1
+  }
+}
