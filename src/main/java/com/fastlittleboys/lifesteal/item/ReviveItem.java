@@ -1,6 +1,7 @@
 package com.fastlittleboys.lifesteal.item;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
+import com.fastlittleboys.lifesteal.component.ReviveMenu;
 import com.fastlittleboys.lifesteal.event.ServerInstance;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -9,7 +10,6 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -32,7 +32,7 @@ public class ReviveItem extends Item {
         if(!world.isClientSide() && player instanceof ServerPlayer serverPlayer) {
             serverPlayer.openMenu(new SimpleMenuProvider(
                 (syncId, inventory, p) -> {
-                    ChestMenu reviveMenu = ChestMenu.threeRows(syncId, inventory);
+                    ReviveMenu reviveMenu = ReviveMenu.openMenu(syncId, inventory);
                     Set<UUID> bannedPlayers = Lifesteal.getPlayerHeartData(ServerInstance.get()).getBannedPlayers();
                     var i = 0;
                     for(UUID uuid : bannedPlayers) {
@@ -55,6 +55,9 @@ public class ReviveItem extends Item {
         return InteractionResult.SUCCESS;
     }
 
+    public static void storeUUIDInNBT(Item item){
+        // TODO
+    }
 
 
 }

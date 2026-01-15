@@ -4,10 +4,7 @@ import com.fastlittleboys.lifesteal.Lifesteal;
 import com.fastlittleboys.lifesteal.event.ServerInstance;
 import com.fastlittleboys.lifesteal.item.ModItems;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.CraftingMenu;
-import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -27,5 +24,6 @@ public abstract class AbstractContainerMenuMixin {
         if ((Object)this instanceof CraftingMenu && i == 0 && getSlot(i).getItem().is(ModItems.HEART)) {
             Lifesteal.getPlayerHeartData(ServerInstance.get()).restartCraftingCooldown(player.getUUID());
         }
+
     }
 }
