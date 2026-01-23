@@ -14,6 +14,10 @@ public class ModComponents {
         Identifier.fromNamespaceAndPath(Lifesteal.MOD_ID, "craftee"),
         DataComponentType.<UUID>builder().persistent(UUIDUtil.CODEC).build());
 
+    public static final DataComponentType<UUID> REVIVE_UUID = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE,
+        Identifier.fromNamespaceAndPath(Lifesteal.MOD_ID, "revive_uuid"),
+        DataComponentType.<UUID>builder().persistent(UUIDUtil.CODEC).build());
+
     public static void initialize() {
         Lifesteal.LOGGER.info("Components registered.");
     }
