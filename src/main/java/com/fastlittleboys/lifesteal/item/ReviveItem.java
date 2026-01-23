@@ -1,8 +1,10 @@
 package com.fastlittleboys.lifesteal.item;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
+import com.fastlittleboys.lifesteal.component.ModComponents;
 import com.fastlittleboys.lifesteal.component.ReviveMenu;
 import com.fastlittleboys.lifesteal.event.ServerInstance;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -18,7 +20,7 @@ import net.minecraft.world.item.component.ResolvableProfile;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
-import java.net.*;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,34 +32,13 @@ public class ReviveItem extends Item {
     @Override
     public @NonNull InteractionResult use(@NonNull Level world, @NonNull Player player, @NonNull InteractionHand hand) {
         if(!world.isClientSide() && player instanceof ServerPlayer serverPlayer) {
-            serverPlayer.openMenu(new SimpleMenuProvider(
-                (syncId, inventory, p) -> {
-                    ReviveMenu reviveMenu = ReviveMenu.openMenu(syncId, inventory);
-                    Set<UUID> bannedPlayers = Lifesteal.getPlayerHeartData(ServerInstance.get()).getBannedPlayers();
-                    var i = 0;
-                    for(UUID uuid : bannedPlayers) {
-                        ItemStack item = new ItemStack(Items.PLAYER_HEAD);
-
-                        item.set(DataComponents.PROFILE, ResolvableProfile.createUnresolved(UUID.fromString("fb352471-a500-4247-8851-fced66ac41fc")));
-                        item.set(DataComponents.CUSTOM_NAME, Component.literal(uuid.toString()));
-                        reviveMenu.getSlot(i).set(item);
-                        i++;
-                    }
-                    return reviveMenu;
-                },
-                    Component.literal("Revive Menu")
-
-                    ));
-
+            ReviveMenu.openReviveMenu(serverPlayer);
         }
 
 
         return InteractionResult.SUCCESS;
     }
 
-    public static void storeUUIDInNBT(Item item){
-        // TODO
-    }
 
 
 }
