@@ -3,7 +3,6 @@
   "package": "com.fastlittleboys.lifesteal.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "AbstractContainerMenuMixin",
     "CrafterBlockMixin",
     "CraftingMenuMixin",
     "ServerLoginPacketListenerImplAccessor"

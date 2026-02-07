@@ -2,10 +2,13 @@ package com.fastlittleboys.lifesteal.item;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
 import com.fastlittleboys.lifesteal.component.ModComponents;
+import com.fastlittleboys.lifesteal.event.ServerInstance;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
@@ -28,5 +31,12 @@ public class HeartItem extends Item {
 
         Lifesteal.showPlayerMessage(player, "item.lifesteal.heart.max", true);
         return InteractionResult.FAIL;
+    }
+
+    @Override
+    public void onCraftedBy(@NonNull ItemStack itemStack, @NonNull Player player) {
+        if (!(player instanceof ServerPlayer)) return;
+
+        Lifesteal.getPlayerHeartData(ServerInstance.get()).restartCraftingCooldown(player.getUUID());
     }
 }

@@ -1,7 +1,6 @@
 package com.fastlittleboys.lifesteal.item;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -11,9 +10,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.component.ItemLore;
 
-import java.util.List;
 import java.util.function.Function;
 
 @SuppressWarnings("unused")
@@ -23,8 +20,7 @@ public class ModItems {
         .rarity(Rarity.RARE));
     public static final ReviveItem REVIVE = register("revive", ReviveItem::new, new Item.Properties()
         .rarity(Rarity.EPIC)
-        .component(DataComponents.LORE, new ItemLore(List.of(
-            Component.translatable("item.lifesteal.revive.lore").withStyle(ChatFormatting.WHITE)))));
+        .component(DataComponents.LORE, Lifesteal.createLore(Component.translatable("item.lifesteal.revive.lore"))));
 
     /**
      * JVM only initializes static fields on the first usage of a class.

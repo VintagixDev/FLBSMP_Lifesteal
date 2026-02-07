@@ -8,19 +8,26 @@ import com.fastlittleboys.lifesteal.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.component.ItemLore;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Lifesteal implements ModInitializer {
 	public static final String MOD_ID = "lifesteal";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	public static ItemLore createLore(MutableComponent component) {
+		return new ItemLore(List.of(component.withStyle(ChatFormatting.WHITE)));
+	}
 
 	public static void showPlayerMessage(Player player, String id, boolean inHotbar) {
 		player.displayClientMessage(Component.translatable(id).withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), inHotbar);
