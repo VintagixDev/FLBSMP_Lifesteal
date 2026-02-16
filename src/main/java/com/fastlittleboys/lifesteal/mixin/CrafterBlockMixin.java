@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Optional;
 
 @Mixin(CrafterBlock.class)
-public class CrafterBlockMixin {
+public abstract class CrafterBlockMixin {
     @Inject(method = "getPotentialResults", at = @At("RETURN"), cancellable = true)
     private static void lifesteal_disableCrafterCraftingHearts(ServerLevel serverLevel, CraftingInput craftingInput,
             CallbackInfoReturnable<Optional<RecipeHolder<CraftingRecipe>>> cir) {

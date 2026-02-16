@@ -17,11 +17,11 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(CraftingMenu.class)
-public class CraftingMenuMixin {
+public abstract class CraftingMenuMixin {
     @Unique
-    private static final long COOLDOWN = 5000; // 24 * 60 * 60 * 1000; // TODO: Move to a config file.
+    private static final long COOLDOWN = 24 * 60 * 60 * 1000;
 
-    @ModifyVariable(method = "slotChangedCraftingGrid", at = @At("STORE"), ordinal = 1, require = 1)
+    @ModifyVariable(method = "slotChangedCraftingGrid", at = @At("STORE"), ordinal = 1)
     private static ItemStack lifesteal_checkCraftingCooldown(ItemStack value,
             AbstractContainerMenu abstractContainerMenu, ServerLevel serverLevel, Player player) {
         if (!value.is(ModItems.HEART)) return value;

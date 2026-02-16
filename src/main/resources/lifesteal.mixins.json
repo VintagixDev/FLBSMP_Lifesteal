@@ -3,8 +3,13 @@
   "package": "com.fastlittleboys.lifesteal.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "BedBlockMixin",
     "CrafterBlockMixin",
     "CraftingMenuMixin",
+    "EntityBasedExplosionDamageCalculatorMixin",
+    "HealOrHarmMobEffectMixin",
+    "LivingEntityMixin",
+    "RespawnAnchorBlockMixin",
     "ServerLoginPacketListenerImplAccessor"
   ],
   "injectors": {
