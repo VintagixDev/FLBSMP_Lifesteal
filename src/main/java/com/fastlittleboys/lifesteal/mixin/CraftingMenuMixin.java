@@ -2,7 +2,6 @@ package com.fastlittleboys.lifesteal.mixin;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
 import com.fastlittleboys.lifesteal.component.ModComponents;
-import com.fastlittleboys.lifesteal.event.ServerInstance;
 import com.fastlittleboys.lifesteal.item.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -22,10 +21,11 @@ public abstract class CraftingMenuMixin {
     private static final long COOLDOWN = 24 * 60 * 60 * 1000;
 
     @ModifyVariable(method = "slotChangedCraftingGrid", at = @At("STORE"), ordinal = 1)
-    private static ItemStack lifesteal_checkCraftingCooldown(ItemStack value,
-            AbstractContainerMenu abstractContainerMenu, ServerLevel serverLevel, Player player) {
+    private static ItemStack lifesteal_checkCraftingCooldown(
+        ItemStack value, AbstractContainerMenu abstractContainerMenu, ServerLevel serverLevel, Player player
+    ) {
         if (!value.is(ModItems.HEART)) return value;
-        if (Lifesteal.getPlayerHeartData(ServerInstance.get()).hasCraftingCooldownExpired(player.getUUID(), COOLDOWN)) {
+        if (Lifesteal.getPlayerHeartData().hasCraftingCooldownExpired(player.getUUID(), COOLDOWN)) {
             value.set(ModComponents.CRAFTEE, player.getUUID());
             value.set(DataComponents.LORE, Lifesteal.createLore(Component.translatable("item.lifesteal.heart.crafted", player.getName())));
             return value;

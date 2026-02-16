@@ -21,6 +21,7 @@ public abstract class BedBlockMixin {
         "Lnet/minecraft/world/phys/Vec3;" +
         "FZLnet/minecraft/world/level/Level$ExplosionInteraction;)V"))
     private void lifesteal_cpvpRule(Args args, BlockState blockState, Level level, BlockPos blockPos, Player player, BlockHitResult blockHitResult) {
-        args.set(2, new HurtOnePlayerExplosionDamageCalculator(player, null));
+        var explosionCalculator = new HurtOnePlayerExplosionDamageCalculator(player, args.get(2));
+        args.set(2, explosionCalculator);
     }
 }

@@ -16,8 +16,9 @@ import java.util.Optional;
 @Mixin(CrafterBlock.class)
 public abstract class CrafterBlockMixin {
     @Inject(method = "getPotentialResults", at = @At("RETURN"), cancellable = true)
-    private static void lifesteal_disableCrafterCraftingHearts(ServerLevel serverLevel, CraftingInput craftingInput,
-            CallbackInfoReturnable<Optional<RecipeHolder<CraftingRecipe>>> cir) {
+    private static void lifesteal_disableCrafterCraftingHearts(
+        ServerLevel serverLevel, CraftingInput craftingInput, CallbackInfoReturnable<Optional<RecipeHolder<CraftingRecipe>>> cir
+    ) {
         if (cir.getReturnValue().isPresent() && cir.getReturnValue().get().value()
             .assemble(craftingInput, serverLevel.registryAccess()).is(ModItems.HEART)) cir.setReturnValue(Optional.empty());
     }

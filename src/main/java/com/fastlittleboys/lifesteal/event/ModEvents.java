@@ -11,6 +11,7 @@ public class ModEvents {
         ServerLoginConnectionEvents.QUERY_START.register(ConnectEvent::onConnect);
         ServerLifecycleEvents.SERVER_STARTED.register(ServerInstance::set);
 
+
         Lifesteal.LOGGER.info("Events registered.");
     }
 }

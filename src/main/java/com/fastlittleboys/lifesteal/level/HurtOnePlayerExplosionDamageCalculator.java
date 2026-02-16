@@ -29,10 +29,29 @@ public class HurtOnePlayerExplosionDamageCalculator extends ExplosionDamageCalcu
     }
 
     @Override
+    public boolean shouldBlockExplode(Explosion explosion, BlockGetter blockGetter, BlockPos blockPos, BlockState blockState, float f) {
+        return originalDamageCalculator == null ? super.shouldBlockExplode(explosion, blockGetter, blockPos, blockState, f)
+            : originalDamageCalculator.shouldBlockExplode(explosion, blockGetter, blockPos, blockState, f);
+    }
+
+    @Override
     public boolean shouldDamageEntity(Explosion explosion, Entity entity) {
         if (entity instanceof Player) {
             return entity == player;
         }
-        return true;
+        return originalDamageCalculator == null ? super.shouldDamageEntity(explosion, entity)
+            : originalDamageCalculator.shouldDamageEntity(explosion, entity);
+    }
+
+    @Override
+    public float getKnockbackMultiplier(Entity entity) {
+        return originalDamageCalculator == null ? super.getKnockbackMultiplier(entity)
+            : originalDamageCalculator.getKnockbackMultiplier(entity);
+    }
+
+    @Override
+    public float getEntityDamageAmount(Explosion explosion, Entity entity, float f) {
+        return originalDamageCalculator == null ? super.getEntityDamageAmount(explosion, entity, f)
+            : originalDamageCalculator.getEntityDamageAmount(explosion, entity, f);
     }
 }

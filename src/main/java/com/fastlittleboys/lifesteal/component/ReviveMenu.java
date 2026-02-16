@@ -51,7 +51,7 @@ public class ReviveMenu extends ChestMenu {
         serverPlayer.openMenu(new SimpleMenuProvider(
                 (syncId, inventory, p) -> {
                     ReviveMenu reviveMenu = ReviveMenu.openMenu(syncId, inventory);
-                    Set<UUID> bannedPlayers = Lifesteal.getPlayerHeartData(ServerInstance.get()).getBannedPlayers();
+                    Set<UUID> bannedPlayers = Lifesteal.getPlayerHeartData().getBannedPlayers();
                     var i = 0;
                     for(UUID uuid : bannedPlayers) {
                         ItemStack item = new ItemStack(Items.PLAYER_HEAD);

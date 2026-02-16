@@ -2,7 +2,6 @@ package com.fastlittleboys.lifesteal.item;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
 import com.fastlittleboys.lifesteal.component.ModComponents;
-import com.fastlittleboys.lifesteal.event.ServerInstance;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -37,6 +36,6 @@ public class HeartItem extends Item {
     public void onCraftedBy(@NonNull ItemStack itemStack, @NonNull Player player) {
         if (!(player instanceof ServerPlayer)) return;
 
-        Lifesteal.getPlayerHeartData(ServerInstance.get()).restartCraftingCooldown(player.getUUID());
+        Lifesteal.getPlayerHeartData().restartCraftingCooldown(player.getUUID());
     }
 }

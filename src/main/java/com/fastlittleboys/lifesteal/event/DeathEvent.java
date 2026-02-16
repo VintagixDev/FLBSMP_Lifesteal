@@ -2,10 +2,13 @@ package com.fastlittleboys.lifesteal.event;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
 import com.fastlittleboys.lifesteal.item.ModItems;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +18,7 @@ public class DeathEvent {
         if (!(entity instanceof ServerPlayer player)) return;
 
         if (!Lifesteal.tryModifyMaxHealth(player, -2)) {
-            Lifesteal.getPlayerHeartData(ServerInstance.get()).banPlayer(player.getUUID());
+            Lifesteal.getPlayerHeartData().banPlayer(player.getUUID());
             player.connection.disconnect(Component.translatable("disconnect.lifesteal.banned"));
         }
         if (damageSource.getEntity() instanceof ServerPlayer attacker &&

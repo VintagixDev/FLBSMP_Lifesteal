@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin {
     @Unique
-    private static final int MAX_HEALTH = 3 * 2;
+    private static final int VERY_LOW_HEALTH = 3 * 2;
 
     @Shadow
     public abstract @Nullable AttributeInstance getAttribute(Holder<Attribute> holder);
@@ -27,7 +27,7 @@ public abstract class LivingEntityMixin {
     @SuppressWarnings("ConstantConditions")
     @Inject(method = "checkTotemDeathProtection", at = @At("HEAD"), cancellable = true)
     private void lifesteal_totemRule(DamageSource damageSource, CallbackInfoReturnable<Boolean> cir) {
-        if ((Object)this instanceof Player && getAttribute(Attributes.MAX_HEALTH).getBaseValue() > MAX_HEALTH) {
+        if ((Object)this instanceof Player && getAttribute(Attributes.MAX_HEALTH).getBaseValue() > VERY_LOW_HEALTH) {
             cir.setReturnValue(false);
             cir.cancel();
         }
