@@ -1,0 +1,6 @@
+{
+  "ban": {
+    "subtitle": "subtitles.lifesteal.ban",
+    "sounds": ["lifesteal:ban"]
+  }
+}

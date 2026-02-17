@@ -5,6 +5,7 @@ import com.fastlittleboys.lifesteal.component.ModComponents;
 import com.fastlittleboys.lifesteal.event.ModEvents;
 import com.fastlittleboys.lifesteal.event.ServerInstance;
 import com.fastlittleboys.lifesteal.item.ModItems;
+import com.fastlittleboys.lifesteal.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -67,5 +68,6 @@ public class Lifesteal implements ModInitializer {
 		ModEvents.initialize();
 		ModComponents.initialize();
 		CommandInitializer.initialize();
+		ModSounds.initialize();
 	}
 }

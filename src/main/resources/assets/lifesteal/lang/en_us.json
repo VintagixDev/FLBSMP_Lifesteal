@@ -1,4 +1,5 @@
 {
+  "chat.lifesteal.ban": "%s was banned",
   "disconnect.lifesteal.banned": "You ran out of hearts!",
   "item.lifesteal.tear_bottle": "Bottle of Tears",
   "item.lifesteal.heart": "Heart",
@@ -7,5 +8,5 @@
   "item.lifesteal.heart.not_yours": "You didn't craft this heart",
   "item.lifesteal.revive": "Revive",
   "item.lifesteal.revive.lore": "It looks like some sort of... mint?",
-  "chat.lifesteal.ban": "%s was banned"
+  "subtitles.lifesteal.ban": "Player banned"
 }
