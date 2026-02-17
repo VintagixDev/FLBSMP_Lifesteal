@@ -10,6 +10,7 @@
     "HealOrHarmMobEffectMixin",
     "LivingEntityMixin",
     "RespawnAnchorBlockMixin",
+    "ServerGamePacketListenerImplMixin",
     "ServerLoginPacketListenerImplAccessor"
   ],
   "injectors": {

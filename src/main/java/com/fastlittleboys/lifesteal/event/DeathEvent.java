@@ -19,13 +19,12 @@ public class DeathEvent {
 
         if (!Lifesteal.tryModifyMaxHealth(player, -2)) {
             Lifesteal.getPlayerHeartData().banPlayer(player.getUUID());
-            player.connection.disconnect(Component.translatable("disconnect.lifesteal.banned"));
             ServerInstance.get().getPlayerList().broadcastSystemMessage(
                 Component.translatable("chat.lifesteal.ban", player.getDisplayName()).withStyle(ChatFormatting.RED), false);
             for (var connectedPlayer : ServerInstance.get().getPlayerList().getPlayers())
                 connectedPlayer.level().playSound(null, connectedPlayer.blockPosition(), ModSounds.BAN, SoundSource.PLAYERS);
         }
-        if (damageSource.getEntity() instanceof ServerPlayer attacker &&
+        if (entity.getKillCredit() instanceof ServerPlayer attacker &&
             !player.getUUID().equals(attacker.getUUID()) && Lifesteal.tryModifyMaxHealth(attacker, 2)) return;
 
         var itemStack = new ItemStack(ModItems.HEART);
