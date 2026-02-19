@@ -9,7 +9,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import org.jspecify.annotations.NonNull;
 
-
 public class ReviveItem extends Item {
     public ReviveItem(Properties settings) {
         super(settings);
@@ -17,14 +16,10 @@ public class ReviveItem extends Item {
 
     @Override
     public @NonNull InteractionResult use(@NonNull Level world, @NonNull Player player, @NonNull InteractionHand hand) {
-        if(!world.isClientSide() && player instanceof ServerPlayer serverPlayer) {
+        if(player instanceof ServerPlayer serverPlayer) {
             ReviveMenu.openReviveMenu(serverPlayer);
         }
 
-
         return InteractionResult.SUCCESS;
     }
-
-
-
 }

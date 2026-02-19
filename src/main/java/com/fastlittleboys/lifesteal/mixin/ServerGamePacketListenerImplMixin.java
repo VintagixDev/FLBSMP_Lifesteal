@@ -16,7 +16,7 @@ public abstract class ServerGamePacketListenerImplMixin {
     public ServerPlayer player;
 
     @Inject(method = "handleClientCommand", at = @At("HEAD"), cancellable = true)
-    private void lifesteal_(ServerboundClientCommandPacket serverboundClientCommandPacket, CallbackInfo ci) {
+    private void lifesteal_disableBannedRespawn(ServerboundClientCommandPacket serverboundClientCommandPacket, CallbackInfo ci) {
         if (serverboundClientCommandPacket.getAction() == ServerboundClientCommandPacket.Action.PERFORM_RESPAWN &&
             Lifesteal.getPlayerHeartData().isPlayerBanned(player.getUUID())) ci.cancel();
     }

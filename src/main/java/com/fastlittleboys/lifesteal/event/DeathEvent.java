@@ -6,7 +6,6 @@ import com.fastlittleboys.lifesteal.sound.ModSounds;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -19,16 +18,17 @@ public class DeathEvent {
 
         if (!Lifesteal.tryModifyMaxHealth(player, -2)) {
             Lifesteal.getPlayerHeartData().banPlayer(player.getUUID());
-            ServerInstance.get().getPlayerList().broadcastSystemMessage(
+            var playerList = ServerInstance.get().getPlayerList();
+            playerList.broadcastSystemMessage(
                 Component.translatable("chat.lifesteal.ban", player.getDisplayName()).withStyle(ChatFormatting.RED), false);
-            for (var connectedPlayer : ServerInstance.get().getPlayerList().getPlayers())
+            for (var connectedPlayer : playerList.getPlayers())
                 connectedPlayer.level().playSound(null, connectedPlayer.blockPosition(), ModSounds.BAN, SoundSource.PLAYERS);
         }
         if (entity.getKillCredit() instanceof ServerPlayer attacker &&
             !player.getUUID().equals(attacker.getUUID()) && Lifesteal.tryModifyMaxHealth(attacker, 2)) return;
 
         var itemStack = new ItemStack(ModItems.HEART);
-        itemStack.set(DataComponents.LORE, Lifesteal.createLore((MutableComponent)damageSource.getLocalizedDeathMessage(player)));
-        player.spawnAtLocation(player.level(), itemStack);
+        itemStack.set(DataComponents.LORE, Lifesteal.createLore(damageSource.getLocalizedDeathMessage(player).copy()));
+        player.drop(itemStack, true, false);
     }
 }

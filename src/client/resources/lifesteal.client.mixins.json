@@ -2,7 +2,9 @@
 	"required": true,
 	"package": "com.fastlittleboys.lifesteal.mixin.client",
 	"compatibilityLevel": "JAVA_21",
-	"client": [],
+	"client": [
+		"GuiMixin"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	}

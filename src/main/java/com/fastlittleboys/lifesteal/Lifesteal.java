@@ -1,6 +1,6 @@
 package com.fastlittleboys.lifesteal;
 
-import com.fastlittleboys.lifesteal.command.CommandInitializer;
+import com.fastlittleboys.lifesteal.command.ModCommands;
 import com.fastlittleboys.lifesteal.component.ModComponents;
 import com.fastlittleboys.lifesteal.event.ModEvents;
 import com.fastlittleboys.lifesteal.event.ServerInstance;
@@ -27,7 +27,6 @@ public class Lifesteal implements ModInitializer {
 	private static final int MAX_HEALTH = 20 * 2;
 	private static final int LOW_HEALTH = 7 * 2;
 
-
 	public static ItemLore createLore(MutableComponent component) {
 		return new ItemLore(List.of(component.withStyle(ChatFormatting.WHITE)));
 	}
@@ -50,9 +49,8 @@ public class Lifesteal implements ModInitializer {
 				var heartData = getPlayerHeartData();
 				if (newMaxHealth >= LOW_HEALTH) heartData.stopCraftingCooldown(player.getUUID());
 				else heartData.startCraftingCooldown(player.getUUID());
+				maxHealth.setBaseValue(newMaxHealth);
 			}
-
-			maxHealth.setBaseValue(newMaxHealth);
 			return true;
 		}
 		return false;
@@ -67,7 +65,7 @@ public class Lifesteal implements ModInitializer {
 		ModItems.initialize();
 		ModEvents.initialize();
 		ModComponents.initialize();
-		CommandInitializer.initialize();
+		ModCommands.initialize();
 		ModSounds.initialize();
 	}
 }
