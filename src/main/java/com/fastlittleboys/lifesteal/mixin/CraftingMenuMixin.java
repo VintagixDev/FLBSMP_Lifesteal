@@ -26,7 +26,6 @@ public abstract class CraftingMenuMixin {
     ) {
         if (!value.is(ModItems.HEART)) return value;
         if (Lifesteal.getPlayerHeartData().hasCraftingCooldownExpired(player.getUUID(), COOLDOWN)) {
-            value.set(ModComponents.CRAFTEE, player.getUUID());
             value.set(DataComponents.LORE, Lifesteal.createLore(Component.translatable("item.lifesteal.heart.lore.crafted", player.getName())));
             return value;
         }

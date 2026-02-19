@@ -8,7 +8,6 @@
   "item.lifesteal.heart.lore.crafted": "%s's crafted heart",
   "item.lifesteal.heart.lore.withdrawn": "%s's withdrawn heart",
   "item.lifesteal.heart.max": "You already have the maximum number of hearts",
-  "item.lifesteal.heart.not_yours": "You didn't craft this heart",
   "item.lifesteal.revive": "Revive",
   "item.lifesteal.revive.lore": "It looks like some sort of... mint?",
   "subtitles.lifesteal.ban": "Player banned"

@@ -8,7 +8,6 @@ import com.fastlittleboys.lifesteal.item.ModItems;
 import com.fastlittleboys.lifesteal.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -31,10 +30,6 @@ public class Lifesteal implements ModInitializer {
 		return new ItemLore(List.of(component.withStyle(ChatFormatting.WHITE)));
 	}
 
-	public static void showPlayerMessage(Player player, String id, boolean inHotbar) {
-		player.displayClientMessage(Component.translatable(id).withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), inHotbar);
-	}
-
 	/**
 	 * @return {@code true} when the new max health was applied successfully; {@code false} otherwise.
 	 */
@@ -47,8 +42,8 @@ public class Lifesteal implements ModInitializer {
 		if (newMaxHealth >= MIN_HEALTH && newMaxHealth <= MAX_HEALTH) {
 			if (player instanceof ServerPlayer) {
 				var heartData = getPlayerHeartData();
-				if (newMaxHealth >= LOW_HEALTH) heartData.stopCraftingCooldown(player.getUUID());
-				else heartData.startCraftingCooldown(player.getUUID());
+                if (newMaxHealth < LOW_HEALTH) heartData.startCraftingCooldown(player.getUUID());
+                else heartData.stopCraftingCooldown(player.getUUID());
 				maxHealth.setBaseValue(newMaxHealth);
 			}
 			return true;

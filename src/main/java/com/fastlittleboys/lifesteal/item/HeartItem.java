@@ -1,7 +1,8 @@
 package com.fastlittleboys.lifesteal.item;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
-import com.fastlittleboys.lifesteal.component.ModComponents;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -18,17 +19,12 @@ public class HeartItem extends Item {
 
     @Override
     public @NonNull InteractionResult use(@NonNull Level world, @NonNull Player player, @NonNull InteractionHand hand) {
-        if (components().has(ModComponents.CRAFTEE) && components().get(ModComponents.CRAFTEE) != player.getUUID()) {
-            Lifesteal.showPlayerMessage(player, "item.lifesteal.heart.not_yours", true);
-            return InteractionResult.FAIL;
-        }
-
         if (Lifesteal.tryModifyMaxHealth(player, 2)) {
             player.getItemInHand(hand).consume(1, player);
             return InteractionResult.CONSUME;
         }
 
-        Lifesteal.showPlayerMessage(player, "item.lifesteal.heart.max", true);
+        player.displayClientMessage(Component.translatable("item.lifesteal.heart.max").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
         return InteractionResult.FAIL;
     }
 
