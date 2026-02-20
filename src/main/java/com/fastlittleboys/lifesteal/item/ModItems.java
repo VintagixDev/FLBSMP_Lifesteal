@@ -18,6 +18,8 @@ public class ModItems {
     public static final Item TEAR_BOTTLE = register("tear_bottle", Item::new, new Item.Properties());
     public static final HeartItem HEART = register("heart", HeartItem::new, new Item.Properties()
         .rarity(Rarity.RARE));
+    public static final Item CRYSTALIZED_DT = register("crystalized_dt", Item::new, new Item.Properties()
+        .rarity(Rarity.UNCOMMON));
     public static final ReviveItem REVIVE = register("revive", ReviveItem::new, new Item.Properties()
         .rarity(Rarity.EPIC)
         .stacksTo(1)

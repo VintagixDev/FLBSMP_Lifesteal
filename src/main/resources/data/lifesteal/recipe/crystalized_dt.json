@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "BNB",
-    "NTN",
-    "BNB"
+    " T ",
+    "BSB",
+    " B "
   ],
   "key": {
     "B": "minecraft:blaze_powder",
-    "N": "minecraft:netherite_ingot",
-    "T": "lifesteal:tear_bottle"
+    "T": "lifesteal:tear_bottle",
+    "S": "minecraft:echo_shard"
   },
   "result": {
-    "id": "lifesteal:heart"
+    "id": "lifesteal:crystalized_dt"
   },
   "show_notification": false
 }

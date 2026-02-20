@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HHH",
+    "CWC",
+    "SBS"
+  ],
+  "key": {
+    "H": "lifesteal:heart",
+    "C": "lifesteal:crystalized_dt",
+    "W": "minecraft:water_bucket",
+    "S": "minecraft:sugar",
+    "B": "minecraft:blaze_powder"
+  },
+  "result": {
+    "id": "lifesteal:revive"
+  },
+  "show_notification": false
+}

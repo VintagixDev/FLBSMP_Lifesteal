@@ -4,6 +4,7 @@
   "commands.lifesteal.withdraw.console": "Cannot execute from console",
   "commands.lifesteal.withdraw.failed": "Cannot withdraw final heart",
   "disconnect.lifesteal.banned": "You ran out of hearts!",
+  "item.lifesteal.crystalized_dt": "Crystalized Determination",
   "item.lifesteal.tear_bottle": "Bottle of Tears",
   "item.lifesteal.heart": "Heart",
   "item.lifesteal.heart.lore.crafted": "%s's crafted heart",

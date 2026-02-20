@@ -1,0 +1,16 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "unlock_right_away": {
+      "trigger": "minecraft:tick"
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "lifesteal:tear_bottle",
+      "lifesteal:heart",
+      "lifesteal:crystalized_dt",
+      "lifesteal:revive"
+    ]
+  }
+}

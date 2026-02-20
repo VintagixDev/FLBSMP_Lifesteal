@@ -10,7 +10,7 @@
     "B": "minecraft:glass_bottle"
   },
   "result": {
-    "id": "lifesteal:tear_bottle",
-    "count": 1
-  }
+    "id": "lifesteal:tear_bottle"
+  },
+  "show_notification": false
 }
