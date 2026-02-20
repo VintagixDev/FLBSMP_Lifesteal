@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvent;
 
 public class ModSounds {
     public static final SoundEvent BAN = register("ban");
+    public static final SoundEvent REVIVE = register("revive");
 
     public static void initialize() {
         Lifesteal.LOGGER.info("Sounds registered.");

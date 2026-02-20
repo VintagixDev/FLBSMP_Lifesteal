@@ -1,4 +1,4 @@
-package com.fastlittleboys.lifesteal;
+package com.fastlittleboys.lifesteal.level;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

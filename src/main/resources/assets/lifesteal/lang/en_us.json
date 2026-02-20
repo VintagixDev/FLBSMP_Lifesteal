@@ -1,5 +1,6 @@
 {
   "chat.lifesteal.ban": "%s was banned",
+  "container.lifesteal.revive": "Revive Player",
   "commands.lifesteal.withdraw.console": "Cannot execute from console",
   "commands.lifesteal.withdraw.failed": "Cannot withdraw final heart",
   "disconnect.lifesteal.banned": "You ran out of hearts!",
@@ -10,5 +11,7 @@
   "item.lifesteal.heart.max": "You already have the maximum number of hearts",
   "item.lifesteal.revive": "Revive",
   "item.lifesteal.revive.lore": "It looks like some sort of... mint?",
-  "subtitles.lifesteal.ban": "Player banned"
+  "item.lifesteal.revive.notfound": "Revive item not found in inventory",
+  "subtitles.lifesteal.ban": "Player banned",
+  "subtitles.lifesteal.revive": "Player revived"
 }

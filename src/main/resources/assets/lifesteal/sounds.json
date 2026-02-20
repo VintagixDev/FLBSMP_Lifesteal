@@ -2,5 +2,9 @@
   "ban": {
     "subtitle": "subtitles.lifesteal.ban",
     "sounds": ["lifesteal:ban"]
+  },
+  "revive": {
+    "subtitle": "subtitles.lifesteal.revive",
+    "sounds": ["lifesteal:revive"]
   }
 }

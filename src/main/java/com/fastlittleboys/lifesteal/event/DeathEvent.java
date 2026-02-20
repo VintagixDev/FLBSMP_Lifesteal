@@ -18,11 +18,9 @@ public class DeathEvent {
 
         if (!Lifesteal.tryModifyMaxHealth(player, -2)) {
             Lifesteal.getPlayerHeartData().banPlayer(player.getUUID());
-            var playerList = ServerInstance.get().getPlayerList();
-            playerList.broadcastSystemMessage(
+            ServerInstance.get().getPlayerList().broadcastSystemMessage(
                 Component.translatable("chat.lifesteal.ban", player.getDisplayName()).withStyle(ChatFormatting.RED), false);
-            for (var connectedPlayer : playerList.getPlayers())
-                connectedPlayer.level().playSound(null, connectedPlayer.blockPosition(), ModSounds.BAN, SoundSource.PLAYERS);
+            Lifesteal.playGlobalSound(ModSounds.BAN, SoundSource.PLAYERS);
         }
         if (entity.getKillCredit() instanceof ServerPlayer attacker &&
             !player.getUUID().equals(attacker.getUUID()) && Lifesteal.tryModifyMaxHealth(attacker, 2)) return;

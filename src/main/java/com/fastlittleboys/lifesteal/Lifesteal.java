@@ -5,11 +5,14 @@ import com.fastlittleboys.lifesteal.component.ModComponents;
 import com.fastlittleboys.lifesteal.event.ModEvents;
 import com.fastlittleboys.lifesteal.event.ServerInstance;
 import com.fastlittleboys.lifesteal.item.ModItems;
+import com.fastlittleboys.lifesteal.level.PlayerHeartData;
 import com.fastlittleboys.lifesteal.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.component.ItemLore;
@@ -53,6 +56,11 @@ public class Lifesteal implements ModInitializer {
 
 	public static PlayerHeartData getPlayerHeartData() {
 		return ServerInstance.get().overworld().getDataStorage().computeIfAbsent(PlayerHeartData.TYPE);
+	}
+
+	public static void playGlobalSound(SoundEvent soundEvent, SoundSource soundSource) {
+		for (var connectedPlayer : ServerInstance.get().getPlayerList().getPlayers())
+			connectedPlayer.level().playSound(null, connectedPlayer.blockPosition(), soundEvent, soundSource);
 	}
 
 	@Override

@@ -20,6 +20,7 @@ public class ModItems {
         .rarity(Rarity.RARE));
     public static final ReviveItem REVIVE = register("revive", ReviveItem::new, new Item.Properties()
         .rarity(Rarity.EPIC)
+        .stacksTo(1)
         .component(DataComponents.LORE, Lifesteal.createLore(Component.translatable("item.lifesteal.revive.lore"))));
 
     /**
