@@ -32,6 +32,6 @@ public class HeartItem extends Item {
     public void onCraftedBy(@NonNull ItemStack itemStack, @NonNull Player player) {
         if (!(player instanceof ServerPlayer)) return;
 
-        Lifesteal.getPlayerHeartData().restartCraftingCooldown(player.getUUID());
+        Lifesteal.getSaveData().restartCraftingCooldown(player.getUUID());
     }
 }

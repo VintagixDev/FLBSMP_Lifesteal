@@ -1,7 +1,6 @@
 package com.fastlittleboys.lifesteal.mixin;
 
 import com.fastlittleboys.lifesteal.Lifesteal;
-import com.fastlittleboys.lifesteal.component.ModComponents;
 import com.fastlittleboys.lifesteal.item.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -25,7 +24,7 @@ public abstract class CraftingMenuMixin {
         ItemStack value, AbstractContainerMenu abstractContainerMenu, ServerLevel serverLevel, Player player
     ) {
         if (!value.is(ModItems.HEART)) return value;
-        if (Lifesteal.getPlayerHeartData().hasCraftingCooldownExpired(player.getUUID(), COOLDOWN)) {
+        if (Lifesteal.getSaveData().hasCraftingCooldownExpired(player.getUUID(), COOLDOWN)) {
             value.set(DataComponents.LORE, Lifesteal.createLore(Component.translatable("item.lifesteal.heart.lore.crafted", player.getName())));
             return value;
         }

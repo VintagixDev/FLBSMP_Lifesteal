@@ -28,7 +28,7 @@ public class ReviveMenu extends ChestMenu {
 
         // TODO: rewrite to allow multiple pages if more than 54 players are banned?
         var i = 0;
-        for (var uuid : Lifesteal.getPlayerHeartData().getBannedPlayers()) {
+        for (var uuid : Lifesteal.getSaveData().getBannedPlayers()) {
             var playerHead = new ItemStack(Items.PLAYER_HEAD);
             var player = ServerInstance.get().services().profileResolver().fetchById(uuid);
             playerHead.set(DataComponents.PROFILE, player.map(ResolvableProfile::createResolved)
@@ -46,7 +46,7 @@ public class ReviveMenu extends ChestMenu {
             var components = getSlot(i).getItem().getComponents();
             if (!components.has(ModComponents.REVIVE_UUID)) return;
 
-            var heartData = Lifesteal.getPlayerHeartData();
+            var heartData = Lifesteal.getSaveData();
             var uuid = components.get(ModComponents.REVIVE_UUID);
             if (!heartData.isPlayerBanned(uuid)) return;
 

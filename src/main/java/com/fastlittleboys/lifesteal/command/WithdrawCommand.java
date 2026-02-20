@@ -16,7 +16,7 @@ public class WithdrawCommand {
     private static final SimpleCommandExceptionType ERROR_CONSOLE = new SimpleCommandExceptionType(Component.translatable("commands.lifesteal.withdraw.console"));
     private static final SimpleCommandExceptionType ERROR_FAILED = new SimpleCommandExceptionType(Component.translatable("commands.lifesteal.withdraw.failed"));
 
-    public static int executeWithdrawCommand(CommandContext<CommandSourceStack> context, int amount) throws CommandSyntaxException {
+    public static int withdraw(CommandContext<CommandSourceStack> context, int amount) throws CommandSyntaxException {
         if(!(context.getSource().getEntity() instanceof ServerPlayer player)) throw ERROR_CONSOLE.create();
         if(!Lifesteal.tryModifyMaxHealth(player, amount * -2)) throw ERROR_FAILED.create();
 

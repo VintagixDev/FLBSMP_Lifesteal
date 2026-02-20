@@ -17,7 +17,7 @@ public class DeathEvent {
         if (!(entity instanceof ServerPlayer player)) return;
 
         if (!Lifesteal.tryModifyMaxHealth(player, -2)) {
-            Lifesteal.getPlayerHeartData().banPlayer(player.getUUID());
+            Lifesteal.getSaveData().banPlayer(player.getUUID());
             ServerInstance.get().getPlayerList().broadcastSystemMessage(
                 Component.translatable("chat.lifesteal.ban", player.getDisplayName()).withStyle(ChatFormatting.RED), false);
             Lifesteal.playGlobalSound(ModSounds.BAN, SoundSource.PLAYERS);

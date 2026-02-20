@@ -19,7 +19,7 @@ public class ConnectEvent {
         Objects.requireNonNull(profile);
 
         synchronizer.waitFor(CompletableFuture.runAsync(() -> {
-            if (Lifesteal.getPlayerHeartData().isPlayerBanned(profile.id())) {
+            if (Lifesteal.getSaveData().isPlayerBanned(profile.id())) {
                 handler.disconnect(Component.translatable("disconnect.lifesteal.banned"));
             }
         }));

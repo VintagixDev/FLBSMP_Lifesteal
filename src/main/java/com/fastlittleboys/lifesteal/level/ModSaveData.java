@@ -8,29 +8,34 @@ import net.minecraft.world.level.saveddata.SavedDataType;
 
 import java.util.*;
 
-public class PlayerHeartData extends SavedData {
-    public static final Codec<PlayerHeartData> CODEC = RecordCodecBuilder.create(
+public class ModSaveData extends SavedData {
+    public static final Codec<ModSaveData> CODEC = RecordCodecBuilder.create(
         instance -> instance.group(
             UUIDUtil.CODEC_SET
                 .optionalFieldOf("bannedPlayers", Set.of())
                 .forGetter(playerHeartData -> playerHeartData.bannedPlayers),
             Codec.unboundedMap(UUIDUtil.STRING_CODEC, Codec.LONG)
                 .optionalFieldOf("craftingCooldowns", Map.of())
-                .forGetter(playerHeartData -> playerHeartData.craftingCooldowns)
-        ).apply(instance, PlayerHeartData::new));
+                .forGetter(playerHeartData -> playerHeartData.craftingCooldowns),
+            Codec.BOOL
+                .optionalFieldOf("endOpen", false)
+                .forGetter(playerHeartData -> playerHeartData.endOpen)
+        ).apply(instance, ModSaveData::new));
     @SuppressWarnings("DataFlowIssue")
-    public static final SavedDataType<PlayerHeartData> TYPE = new SavedDataType<>(
-        "player_heart_data", PlayerHeartData::new, CODEC, null);
+    public static final SavedDataType<ModSaveData> TYPE = new SavedDataType<>(
+        "player_heart_data", ModSaveData::new, CODEC, null);
     private final Set<UUID> bannedPlayers;
     private final Map<UUID, Long> craftingCooldowns;
+    private boolean endOpen;
 
-    public PlayerHeartData() {
-        this(Set.of(), Map.of());
+    public ModSaveData() {
+        this(Set.of(), Map.of(), false);
     }
 
-    public PlayerHeartData(Set<UUID> bannedPlayers, Map<UUID, Long> craftingCooldowns) {
+    public ModSaveData(Set<UUID> bannedPlayers, Map<UUID, Long> craftingCooldowns, boolean endOpen) {
         this.bannedPlayers = new HashSet<>(bannedPlayers);
         this.craftingCooldowns = new HashMap<>(craftingCooldowns);
+        this.endOpen = endOpen;
     }
 
     public Set<UUID> getBannedPlayers() {
@@ -64,6 +69,15 @@ public class PlayerHeartData extends SavedData {
 
     public void restartCraftingCooldown(UUID player) {
         craftingCooldowns.put(player, System.currentTimeMillis());
+        setDirty();
+    }
+
+    public boolean isEndOpen() {
+        return endOpen;
+    }
+
+    public void setEndOpen(boolean value) {
+        endOpen = value;
         setDirty();
     }
 }

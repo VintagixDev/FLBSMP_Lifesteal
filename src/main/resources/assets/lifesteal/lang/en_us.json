@@ -3,6 +3,8 @@
   "container.lifesteal.revive": "Revive Player",
   "commands.lifesteal.withdraw.console": "Cannot execute from console",
   "commands.lifesteal.withdraw.failed": "Cannot withdraw final heart",
+  "commands.lifesteal.openend.get": "End opened is currently: %s",
+  "commands.lifesteal.openend.set": "End opened set to: %s",
   "disconnect.lifesteal.banned": "You ran out of hearts!",
   "item.lifesteal.crystalized_dt": "Crystalized Determination",
   "item.lifesteal.tear_bottle": "Bottle of Tears",

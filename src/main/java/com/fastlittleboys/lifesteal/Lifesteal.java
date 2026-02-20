@@ -5,7 +5,7 @@ import com.fastlittleboys.lifesteal.component.ModComponents;
 import com.fastlittleboys.lifesteal.event.ModEvents;
 import com.fastlittleboys.lifesteal.event.ServerInstance;
 import com.fastlittleboys.lifesteal.item.ModItems;
-import com.fastlittleboys.lifesteal.level.PlayerHeartData;
+import com.fastlittleboys.lifesteal.level.ModSaveData;
 import com.fastlittleboys.lifesteal.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.ChatFormatting;
@@ -44,7 +44,7 @@ public class Lifesteal implements ModInitializer {
 		var newMaxHealth = maxHealth.getBaseValue() + delta;
 		if (newMaxHealth >= MIN_HEALTH && newMaxHealth <= MAX_HEALTH) {
 			if (player instanceof ServerPlayer) {
-				var heartData = getPlayerHeartData();
+				var heartData = getSaveData();
                 if (newMaxHealth < LOW_HEALTH) heartData.startCraftingCooldown(player.getUUID());
                 else heartData.stopCraftingCooldown(player.getUUID());
 				maxHealth.setBaseValue(newMaxHealth);
@@ -54,8 +54,8 @@ public class Lifesteal implements ModInitializer {
 		return false;
 	}
 
-	public static PlayerHeartData getPlayerHeartData() {
-		return ServerInstance.get().overworld().getDataStorage().computeIfAbsent(PlayerHeartData.TYPE);
+	public static ModSaveData getSaveData() {
+		return ServerInstance.get().overworld().getDataStorage().computeIfAbsent(ModSaveData.TYPE);
 	}
 
 	public static void playGlobalSound(SoundEvent soundEvent, SoundSource soundSource) {
