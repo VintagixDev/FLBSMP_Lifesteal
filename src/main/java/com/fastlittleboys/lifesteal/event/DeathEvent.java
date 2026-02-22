@@ -10,14 +10,21 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 
 public class DeathEvent {
+    private static final int REVIVE_HEARTS = 3 * 2;
+
+    // MAX_HEALTH is never null
+    @SuppressWarnings("DataFlowIssue")
     static void onDeath(LivingEntity entity, DamageSource damageSource) {
         if (!(entity instanceof ServerPlayer player)) return;
 
         if (!Lifesteal.tryModifyMaxHealth(player, -2)) {
             Lifesteal.getSaveData().banPlayer(player.getUUID());
+            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(REVIVE_HEARTS);
+
             ServerInstance.get().getPlayerList().broadcastSystemMessage(
                 Component.translatable("chat.lifesteal.ban", player.getDisplayName()).withStyle(ChatFormatting.RED), false);
             Lifesteal.playGlobalSound(ModSounds.BAN, SoundSource.PLAYERS);
