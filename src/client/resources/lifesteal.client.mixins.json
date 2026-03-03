@@ -1,11 +1,13 @@
 {
-	"required": true,
-	"package": "com.fastlittleboys.lifesteal.mixin.client",
-	"compatibilityLevel": "JAVA_21",
-	"client": [
-		"GuiMixin"
-	],
-	"injectors": {
-		"defaultRequire": 1
+  "required": true,
+  "package": "com.fastlittleboys.lifesteal.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "DebugScreenOverlayMixin",
+    "GuiMixin",
+    "KeyboardHandlerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
 	}
 }
