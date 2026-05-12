@@ -24,7 +24,7 @@ public class HeartItem extends Item {
             return InteractionResult.CONSUME;
         }
 
-        player.displayClientMessage(Component.translatable("item.lifesteal.heart.max").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+        player.sendOverlayMessage(Component.translatable("item.lifesteal.heart.max").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD));
         return InteractionResult.FAIL;
     }
 

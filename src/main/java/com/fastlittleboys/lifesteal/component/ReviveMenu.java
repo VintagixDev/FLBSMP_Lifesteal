@@ -39,11 +39,11 @@ public class ReviveMenu extends ChestMenu {
     }
 
     @Override
-    public void clicked(int i, int j, ClickType clickType, Player player) {
-        if (i < 0 || i >= SLOT_COUNT) return;
+    public void clicked(int slotIndex, int buttonNum, ContainerInput containerInput, Player player) {
+        if (slotIndex < 0 || slotIndex >= SLOT_COUNT) return;
 
         if (player.getItemInHand(hand).is(ModItems.REVIVE)) {
-            var components = getSlot(i).getItem().getComponents();
+            var components = getSlot(slotIndex).getItem().getComponents();
             if (!components.has(ModComponents.REVIVE_UUID)) return;
 
             var heartData = Lifesteal.getSaveData();
@@ -54,7 +54,7 @@ public class ReviveMenu extends ChestMenu {
             heartData.unbanPlayer(uuid);
             Lifesteal.playGlobalSound(ModSounds.REVIVE, SoundSource.PLAYERS);
         }
-        else player.displayClientMessage(Component.translatable("item.lifesteal.revive.notfound").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+        else player.sendOverlayMessage(Component.translatable("item.lifesteal.revive.notfound").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD));
         ((ServerPlayer)player).closeContainer();
     }
 }

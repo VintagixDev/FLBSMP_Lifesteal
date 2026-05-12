@@ -1,8 +1,10 @@
 package com.fastlittleboys.lifesteal.level;
 
+import com.fastlittleboys.lifesteal.Lifesteal;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.UUIDUtil;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
 
@@ -23,7 +25,7 @@ public class ModSaveData extends SavedData {
         ).apply(instance, ModSaveData::new));
     @SuppressWarnings("DataFlowIssue")
     public static final SavedDataType<ModSaveData> TYPE = new SavedDataType<>(
-        "player_heart_data", ModSaveData::new, CODEC, null);
+        Identifier.fromNamespaceAndPath(Lifesteal.MOD_ID, "player_heart_data"), ModSaveData::new, CODEC, null);
     private final Set<UUID> bannedPlayers;
     private final Map<UUID, Long> craftingCooldowns;
     private boolean endOpen;
